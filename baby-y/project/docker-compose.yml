@@ -1,0 +1,20 @@
+version: '3.6'
+
+services:
+  sqliy_web:
+    build: ./project
+    image: bearcat/sqliy
+    container_name: sqliy
+    networks:
+      - bearcat-network
+    volumes:
+      - ./project/code:/var/www/html/public
+    ports: 
+      - 11700:80
+    command: "sh /mysql/setup.sh"
+    tty: true
+    stdin_open: true
+
+networks:
+  bearcat-network:
+    name: app
